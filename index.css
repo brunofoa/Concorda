@@ -1,0 +1,43 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    -webkit-tap-highlight-color: transparent;
+  }
+}
+
+@layer utilities {
+  .neo-brutalism {
+    border: 3px solid #000000;
+    box-shadow: 4px 4px 0px #000000;
+  }
+  
+  .dark .neo-brutalism {
+    border: 3px solid #ffffff;
+    box-shadow: 4px 4px 0px #ffffff;
+  }
+  
+  .neo-shadow {
+    box-shadow: 4px 4px 0px #000000;
+  }
+  
+  .dark .neo-shadow {
+    box-shadow: 4px 4px 0px #ffffff;
+  }
+  
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+  
+  .no-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+  
+  .gradient-btn {
+    background: linear-gradient(135deg, #4ADE80 0%, #22C55E 100%);
+  }
+}
