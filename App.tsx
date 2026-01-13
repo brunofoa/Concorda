@@ -1,7 +1,8 @@
 
-import React from 'react';
-import { HashRouter, Routes, Route, Navigate } from 'react-router-dom';
+import React, { useEffect } from 'react';
+import { BrowserRouter, Routes, Route, Navigate, useNavigate } from 'react-router-dom';
 import Login from './pages/Login';
+import UpdatePassword from './pages/UpdatePassword';
 import Signup from './pages/Signup';
 import Dashboard from './pages/Dashboard';
 import History from './pages/History';
@@ -11,6 +12,7 @@ import Profile from './pages/Profile';
 import AgreementsLibrary from './pages/AgreementsLibrary';
 import TipsLibrary from './pages/TipsLibrary';
 import { AuthProvider, useAuth } from './contexts/AuthContext';
+import { supabase } from './services/supabase';
 
 const PrivateRoute: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const { user, loading } = useAuth();
@@ -27,9 +29,26 @@ const PrivateRoute: React.FC<{ children: React.ReactNode }> = ({ children }) => 
 };
 
 const AppRoutes: React.FC = () => {
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    const { data: authListener } = supabase.auth.onAuthStateChange(async (event, session) => {
+      console.log('Supabase Auth Event:', event); // Debug log
+      if (event === 'PASSWORD_RECOVERY') {
+        console.log('Navigating to update-password'); // Debug log
+        navigate('/update-password');
+      }
+    });
+
+    return () => {
+      authListener.subscription.unsubscribe();
+    };
+  }, [navigate]);
+
   return (
     <Routes>
       <Route path="/login" element={<Login />} />
+      <Route path="/update-password" element={<UpdatePassword />} />
       <Route path="/signup" element={<Signup />} />
 
       {/* Protected routes */}
@@ -48,11 +67,11 @@ const AppRoutes: React.FC = () => {
 
 const App: React.FC = () => {
   return (
-    <HashRouter>
+    <BrowserRouter>
       <AuthProvider>
         <AppRoutes />
       </AuthProvider>
-    </HashRouter>
+    </BrowserRouter>
   );
 };
 

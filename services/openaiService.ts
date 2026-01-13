@@ -16,7 +16,7 @@ const openai = new OpenAI({
     dangerouslyAllowBrowser: true
 });
 
-import { AgreementTone, AgreementCategory } from '../../../types';
+import { AgreementTone, AgreementCategory } from '../types';
 
 export async function getRuleSuggestions(commitment: string, tone: AgreementTone, category: AgreementCategory): Promise<string[]> {
     if (!apiKey) {
