@@ -41,7 +41,7 @@ const Layout: React.FC<LayoutProps> = ({ children, title }) => {
       >
         <div className="p-6 h-full flex flex-col">
           <div className="flex justify-between items-center mb-10">
-            <h2 className="font-display text-2xl font-black tracking-tighter text-black dark:text-white">Concorda.</h2>
+            <img src="/logo.png" alt="Concorda" className="h-8" />
             <button
               onClick={toggleSidebar}
               className="w-10 h-10 rounded-full border-2 border-black flex items-center justify-center hover:bg-gray-100 dark:hover:bg-zinc-800 transition-colors"

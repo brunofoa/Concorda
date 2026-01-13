@@ -4,6 +4,7 @@ import SignatureCanvas from 'react-signature-canvas';
 import Layout from '../components/Layout';
 import { supabase } from '../services/supabase';
 import { AgreementStatus } from '../types';
+import { Share2, Edit2 } from 'lucide-react';
 
 type ClosureType = 'success' | 'fail' | 'extend' | null;
 
@@ -144,6 +145,31 @@ const AgreementDetails: React.FC = () => {
 
   };
 
+  const handleShare = async () => {
+    if (!agreement) return;
+
+    const shareText = `Acordo: ${agreement.title}\nCompromisso: ${agreement.description}\nFechado no App Concorda! 🤝`;
+
+    if (navigator.share) {
+      try {
+        await navigator.share({
+          title: agreement.title,
+          text: shareText,
+        });
+      } catch (err) {
+        console.error('Error sharing:', err);
+      }
+    } else {
+      try {
+        await navigator.clipboard.writeText(shareText);
+        alert('Texto copiado!');
+      } catch (err) {
+        console.error('Error copying to clipboard:', err);
+        alert('Erro ao copiar texto.');
+      }
+    }
+  };
+
   const handleRatification = async () => {
     const p1 = participants[0];
     const p2 = participants[1];
@@ -196,17 +222,30 @@ const AgreementDetails: React.FC = () => {
         <div className="bg-white dark:bg-zinc-900 rounded-[40px] border-3 border-black p-8 relative neo-shadow space-y-8">
 
           {/* 1. Header Section */}
-          <div className="text-center sm:text-left space-y-2">
-            {/* Data */}
-            <span className="text-[10px] font-bold text-gray-400 uppercase tracking-widest block">
-              Criado em {new Date(agreement.created_at).toLocaleDateString()}
-            </span>
+          <div className="flex items-start justify-between">
+            <div className="space-y-2">
+              {/* Data */}
+              <span className="text-[10px] font-bold text-gray-400 uppercase tracking-widest block">
+                Criado em {new Date(agreement.created_at).toLocaleDateString()}
+              </span>
 
-            {/* Título */}
-            <h1 className="text-3xl font-black text-black dark:text-white leading-tight uppercase tracking-tight">
-              {agreement.title}
-            </h1>
+              {/* Título */}
+              <h1 className="text-3xl font-black text-black dark:text-white leading-tight uppercase tracking-tight">
+                {agreement.title}
+              </h1>
+            </div>
 
+            {/* Share Button */}
+            <button
+              onClick={handleShare}
+              className="p-3 rounded-full border-2 border-black hover:bg-gray-100 dark:hover:bg-zinc-800 transition-colors shrink-0"
+              title="Compartilhar Acordo"
+            >
+              <Share2 className="w-5 h-5 text-black dark:text-white" />
+            </button>
+          </div>
+
+          <div className="text-center sm:text-left">
             {/* Badges */}
             <div className="flex flex-wrap gap-2 justify-center sm:justify-start pt-2">
               {agreement.category && (
@@ -237,7 +276,7 @@ const AgreementDetails: React.FC = () => {
             <div className="flex flex-wrap gap-3">
               {participants.map((p: any) => (
                 <div key={p.id} className="bg-slate-50 dark:bg-zinc-800 border-2 border-black rounded-xl px-4 py-2">
-                  <span className="text-sm font-black text-black dark:text-white uppercase">{p.name}</span>
+                  <span className="text-sm font-bold text-black dark:text-white uppercase">{p.name}</span>
                 </div>
               ))}
             </div>
@@ -263,14 +302,16 @@ const AgreementDetails: React.FC = () => {
                 <span className="material-icons-outlined text-sm">rule</span>
                 Regras
               </h3>
-              <ul className="space-y-2 pl-2">
-                {agreement.agreement_rules.map((r: any, i: number) => (
-                  <li key={i} className="flex items-start gap-3 text-sm font-bold text-gray-700 dark:text-gray-300">
-                    <span className="mt-1.5 w-1.5 h-1.5 rounded-full bg-black shrink-0"></span>
-                    <span>{r.text}</span>
-                  </li>
-                ))}
-              </ul>
+              <div className="border-2 border-black rounded-3xl p-5 mb-6 bg-slate-50 dark:bg-zinc-800">
+                <ul className="space-y-2 pl-2">
+                  {agreement.agreement_rules.map((r: any, i: number) => (
+                    <li key={i} className="flex items-start gap-3 text-sm font-bold text-gray-700 dark:text-gray-300">
+                      <span className="mt-1.5 w-1.5 h-1.5 rounded-full bg-black shrink-0"></span>
+                      <span>{r.text}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
             </div>
           )}
 
@@ -297,7 +338,7 @@ const AgreementDetails: React.FC = () => {
               Vigência
             </h3>
             <div className="flex items-center gap-3 bg-purple-50 dark:bg-purple-900/10 border-2 border-black rounded-xl p-3 w-fit">
-              <p className="text-sm font-black text-purple-700 dark:text-purple-300">{agreement.validity}</p>
+              <p className="text-sm font-bold text-black dark:text-purple-300">{agreement.validity}</p>
               {agreement.negotiation_count > 0 && (
                 <span className="text-[9px] bg-white border border-purple-200 px-2 py-0.5 rounded text-purple-700 font-bold">
                   + {agreement.negotiation_count} renegociações
@@ -414,7 +455,7 @@ const AgreementDetails: React.FC = () => {
               onClick={() => { setIsModalOpen(true); setStep(0); }}
               className="pointer-events-auto shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] bg-primary text-black border-2 border-black px-8 py-4 rounded-full font-black text-sm uppercase tracking-widest hover:-translate-y-1 hover:shadow-[6px_6px_0px_0px_rgba(0,0,0,1)] active:translate-y-0 active:shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] transition-all flex items-center gap-3"
             >
-              <span className="material-icons-outlined">edit_square</span>
+              <Edit2 className="w-5 h-5" />
               Encerrar ou Atualizar
             </button>
           </div>

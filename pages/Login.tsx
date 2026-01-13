@@ -62,10 +62,8 @@ const Login: React.FC = () => {
     <div className="min-h-screen bg-background-light dark:bg-background-dark flex flex-col items-center justify-center p-8 transition-colors">
       <div className="w-full max-w-md">
         <div className="mb-12 text-center">
-          <h1 className="font-display text-6xl font-black text-black dark:text-white tracking-tighter">
-            Concorda.
-          </h1>
-          <p className="mt-4 text-gray-600 dark:text-gray-400 font-medium">
+          <img src="/logo.png" alt="Concorda" className="h-40 md:h-56 mx-auto -mb-10" />
+          <p className="-mt-2 text-gray-600 dark:text-gray-400 font-medium z-10 relative">
             Seus combinados em um só lugar.
           </p>
         </div>

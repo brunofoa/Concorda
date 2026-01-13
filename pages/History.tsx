@@ -8,7 +8,7 @@ const History: React.FC = () => {
   const { user } = useAuth();
   const [agreements, setAgreements] = useState<any[]>([]);
   const [loading, setLoading] = useState(true);
-  const [filter, setFilter] = useState<'active' | 'closed'>('active');
+  const [activeTab, setActiveTab] = useState<'active' | 'closed'>('active');
 
   const fetchAgreements = async () => {
     if (!user) return;
@@ -50,7 +50,8 @@ const History: React.FC = () => {
 
   const filteredAgreements = agreements.filter(a => {
     // Status filter
-    const statusMatch = filter === 'active' ? a.status !== 'archived' : a.status === 'archived';
+    // Active tab shows only 'active'. Closed tab shows everything else (completed, cancelled, etc.)
+    const statusMatch = activeTab === 'active' ? a.status === 'active' : a.status !== 'active';
 
     // Category filter
     const categoryMatch = activeCategory === 'Todos' || a.category === activeCategory;
@@ -62,20 +63,26 @@ const History: React.FC = () => {
     <Layout title="Meus Acordos">
       <div className="px-6 space-y-6 pb-24">
         {/* Status Tabs */}
-        <nav className="flex gap-4 mb-4">
+        <div className="flex gap-4 mb-2">
           <button
-            onClick={() => setFilter('active')}
-            className={`flex-1 py-3 rounded-2xl neo-brutalism font-extrabold text-xs uppercase tracking-wider transition-all ${filter === 'active' ? 'bg-gradient-to-r from-emerald-400 to-primary text-black' : 'bg-white dark:bg-zinc-800 text-gray-400 dark:text-gray-500 opacity-50'}`}
+            onClick={() => setActiveTab('active')}
+            className={`flex-1 py-3 rounded-2xl font-black text-sm uppercase tracking-wider transition-all border-2 ${activeTab === 'active'
+              ? 'bg-green-400 border-black text-black neo-shadow'
+              : 'bg-transparent border-transparent text-gray-400 hover:bg-gray-50'
+              }`}
           >
             Ativos
           </button>
           <button
-            onClick={() => setFilter('closed')}
-            className={`flex-1 py-3 rounded-2xl neo-brutalism font-extrabold text-xs uppercase tracking-wider transition-all ${filter === 'closed' ? 'bg-gradient-to-r from-emerald-400 to-primary text-black' : 'bg-white dark:bg-zinc-800 text-gray-400 dark:text-gray-500 opacity-50'}`}
+            onClick={() => setActiveTab('closed')}
+            className={`flex-1 py-3 rounded-2xl font-black text-sm uppercase tracking-wider transition-all border-2 ${activeTab === 'closed'
+              ? 'bg-green-400 border-black text-black neo-shadow'
+              : 'bg-transparent border-transparent text-gray-400 hover:bg-gray-50'
+              }`}
           >
             Encerrados
           </button>
-        </nav>
+        </div>
 
         {/* Category Filter */}
         <div className="flex gap-2 overflow-x-auto no-scrollbar -mx-2 px-2 pb-2">
