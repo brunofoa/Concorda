@@ -108,7 +108,7 @@ const Layout: React.FC<LayoutProps> = ({ children, title }) => {
         </div>
         <div className="flex items-center gap-5">
           <button className="p-2 hover:bg-gray-100 dark:hover:bg-zinc-800 rounded-full transition-colors">
-            <span className="material-icons-outlined text-2xl text-black dark:text-white">search</span>
+            <span className="material-icons-outlined text-2xl text-black dark:text-white">notifications_none</span>
           </button>
           <Link to="/profile">
             <div className="w-10 h-10 rounded-full bg-accent-yellow border-2 border-black flex items-center justify-center neo-shadow !shadow-[3px_3px_0px_0px_rgba(0,0,0,1)] dark:!shadow-[3px_3px_0px_0px_rgba(255,255,255,0.2)] transition-transform active:scale-95">

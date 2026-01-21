@@ -198,11 +198,20 @@ export async function generateDailyTip(): Promise<{ title: string, category: str
     if (!apiKey) return null;
 
     try {
-        const systemPrompt = "Você é um especialista em convivência harmoniosa e divertida. Retorne APENAS um JSON válido.";
-        const userPrompt = `Gere uma dica curta, leve e educativa sobre convivência (roommates, casais ou amigos). 
+        const temas = ['Convivência em Casa', 'Divisão de Tarefas', 'Finanças Compartilhadas', 'Amizade e Lealdade', 'Vida de Casal', 'Respeito ao Espaço do Outro', 'Pequenos Gestos', 'Resolução de Conflitos'];
+        const temaDoDia = temas[Math.floor(Math.random() * temas.length)];
+
+        const systemPrompt = "Você é um especialista em relacionamentos humanos, com um tom leve, prático e bem-humorado (estilo coach moderno, mas sem clichês). Retorne APENAS um JSON válido.";
+        const userPrompt = `Gere uma dica curta e prática sobre o tema: ${temaDoDia}.
+        
+        Restrições (IMPORTANTE):
+        - O título deve ser criativo, engraçado ou provocativo.
+        - PROIBIDO usar a palavra "Comunicação" ou "Dialogar" no título.
+        - O texto deve ir direto ao ponto, sugerindo uma ação prática.
+
         Retorne estritamente um JSON com esta estrutura:
         {
-          "category": "Tag curta (ex: Convivência)",
+          "category": "Tag curta (ex: ${temaDoDia})",
           "title": "Título criativo com 1 Emoji",
           "intro": "Uma frase introdutória envolvente de até 2 linhas.",
           "steps": [
@@ -211,8 +220,7 @@ export async function generateDailyTip(): Promise<{ title: string, category: str
             { "id": "03", "bold": "Título do passo:", "text": "Explicação curta." }
           ],
           "conclusion": "Frase final de impacto curta."
-        }
-        Seja sempre educativo, leve e formate os passos exatamente assim.`;
+        }`;
 
         const response = await openai.chat.completions.create({
             model: "gpt-4o-mini",
@@ -221,7 +229,7 @@ export async function generateDailyTip(): Promise<{ title: string, category: str
                 { role: "user", content: userPrompt }
             ],
             response_format: { type: "json_object" },
-            max_tokens: 400,
+            max_tokens: 450,
         });
 
         const content = response.choices[0].message.content;
