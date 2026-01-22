@@ -136,7 +136,7 @@ const Dashboard: React.FC = () => {
         <section className="mt-6">
           <div className="flex items-center gap-3 mb-1">
             <span className="w-8 h-[3px] bg-primary rounded-full"></span>
-            <p className="text-[10px] font-black uppercase tracking-[0.3em] text-primary">Bem-vindo de volta</p>
+            <p className="text-[10px] font-black tracking-[0.3em] text-primary">Bem-vindo de volta</p>
           </div>
           <h1 className="text-5xl font-extrabold tracking-tight leading-none mb-2">Olá, {userName}!</h1>
           <p className="text-slate-500 dark:text-slate-400 font-medium">
@@ -181,7 +181,7 @@ const Dashboard: React.FC = () => {
 
         <section>
           <div className="flex justify-between items-end mb-4">
-            <h3 className="text-xl font-black uppercase tracking-tighter">Seu Radar</h3>
+            <h3 className="text-xl font-black tracking-tighter">Seu Radar</h3>
             <Link to="/history" className="text-xs font-black text-primary flex items-center gap-1">
               HISTÓRICO <span className="material-icons-outlined text-sm">north_east</span>
             </Link>
@@ -206,7 +206,7 @@ const Dashboard: React.FC = () => {
 
         <section>
           <div className="flex justify-between items-end mb-4">
-            <h3 className="text-xl font-black uppercase tracking-tighter">Acordos Recentes</h3>
+            <h3 className="text-xl font-black tracking-tighter">Acordos Recentes</h3>
             <Link to="/history">
               <button className="w-8 h-8 rounded-full border-2 border-black flex items-center justify-center hover:bg-slate-100 transition-colors">
                 <span className="material-icons-outlined text-sm text-black dark:text-white">arrow_forward</span>
@@ -251,7 +251,7 @@ const Dashboard: React.FC = () => {
           <Link to="/new">
             <button className="w-full py-5 rounded-full bg-primary border-3 border-black text-black font-black text-xl neo-shadow active:translate-y-1 active:shadow-none transition-all flex items-center justify-center gap-3 group">
               <span className="material-icons-outlined font-black text-2xl group-hover:rotate-90 transition-transform duration-300 text-black">add_circle</span>
-              <span className="text-black">NOVO ACORDO</span>
+              <span className="text-black">Novo Acordo</span>
             </button>
           </Link>
         </section>

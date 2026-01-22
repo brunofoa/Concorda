@@ -269,7 +269,7 @@ const AgreementDetails: React.FC = () => {
 
           {/* 2. Participantes */}
           <div>
-            <h3 className="text-[10px] font-black uppercase tracking-widest text-primary mb-3 flex items-center gap-2">
+            <h3 className="text-[10px] font-black tracking-widest text-primary mb-3 flex items-center gap-2">
               <span className="material-icons-outlined text-sm">group</span>
               Participantes
             </h3>
@@ -284,7 +284,7 @@ const AgreementDetails: React.FC = () => {
 
           {/* 3. O Compromisso */}
           <div>
-            <h3 className="text-[10px] font-black uppercase tracking-widest text-primary mb-3 flex items-center gap-2">
+            <h3 className="text-[10px] font-black tracking-widest text-primary mb-3 flex items-center gap-2">
               <span className="material-icons-outlined text-sm">edit_note</span>
               O Compromisso
             </h3>
@@ -298,7 +298,7 @@ const AgreementDetails: React.FC = () => {
           {/* 4. Regras (Extra, mantendo por ser do modelo de dados, mas discreto) */}
           {agreement.agreement_rules?.length > 0 && (
             <div>
-              <h3 className="text-[10px] font-black uppercase tracking-widest text-primary mb-3 flex items-center gap-2">
+              <h3 className="text-[10px] font-black tracking-widest text-primary mb-3 flex items-center gap-2">
                 <span className="material-icons-outlined text-sm">rule</span>
                 Regras
               </h3>
@@ -318,7 +318,7 @@ const AgreementDetails: React.FC = () => {
           {/* 5. A Multa */}
           {agreement.penalty && (
             <div>
-              <h3 className="text-[10px] font-black uppercase tracking-widest text-red-500 mb-3 flex items-center gap-2">
+              <h3 className="text-[10px] font-black tracking-widest text-red-500 mb-3 flex items-center gap-2">
                 <span className="material-icons-outlined text-sm text-red-500">sentiment_very_dissatisfied</span>
                 A Multa
               </h3>
@@ -333,7 +333,7 @@ const AgreementDetails: React.FC = () => {
 
           {/* 6. Vigência */}
           <div>
-            <h3 className="text-[10px] font-black uppercase tracking-widest text-purple-500 mb-3 flex items-center gap-2">
+            <h3 className="text-[10px] font-black tracking-widest text-purple-500 mb-3 flex items-center gap-2">
               <span className="material-icons-outlined text-sm text-purple-500">event</span>
               Vigência
             </h3>

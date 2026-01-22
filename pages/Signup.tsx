@@ -77,7 +77,7 @@ const Signup: React.FC = () => {
                 <form onSubmit={handleSignup} className="space-y-6">
                     <div className="grid grid-cols-2 gap-4">
                         <div>
-                            <label className="block mb-2 ml-1 text-xs font-bold text-black dark:text-white uppercase tracking-wider">Nome</label>
+                            <label className="block mb-2 ml-1 text-xs font-bold text-black dark:text-white tracking-wider">Nome</label>
                             <div className="bg-white dark:bg-zinc-900 neo-brutalism rounded-3xl flex items-center px-4 py-1">
                                 <input
                                     className="w-full bg-transparent border-none focus:ring-0 py-3 text-black dark:text-white placeholder:text-gray-400 font-medium"
@@ -90,7 +90,7 @@ const Signup: React.FC = () => {
                             </div>
                         </div>
                         <div>
-                            <label className="block mb-2 ml-1 text-xs font-bold text-black dark:text-white uppercase tracking-wider">Sobrenome</label>
+                            <label className="block mb-2 ml-1 text-xs font-bold text-black dark:text-white tracking-wider">Sobrenome</label>
                             <div className="bg-white dark:bg-zinc-900 neo-brutalism rounded-3xl flex items-center px-4 py-1">
                                 <input
                                     className="w-full bg-transparent border-none focus:ring-0 py-3 text-black dark:text-white placeholder:text-gray-400 font-medium"
@@ -105,7 +105,7 @@ const Signup: React.FC = () => {
                     </div>
 
                     <div>
-                        <label className="block mb-2 ml-1 text-xs font-bold text-black dark:text-white uppercase tracking-wider">Telefone</label>
+                        <label className="block mb-2 ml-1 text-xs font-bold text-black dark:text-white tracking-wider">Telefone</label>
                         <div className="bg-white dark:bg-zinc-900 neo-brutalism rounded-3xl flex items-center px-4 py-1">
                             <span className="material-icons-outlined text-gray-400 mr-3">phone</span>
                             <input
@@ -120,7 +120,7 @@ const Signup: React.FC = () => {
                     </div>
 
                     <div>
-                        <label className="block mb-2 ml-1 text-xs font-bold text-black dark:text-white uppercase tracking-wider">E-mail</label>
+                        <label className="block mb-2 ml-1 text-xs font-bold text-black dark:text-white tracking-wider">E-mail</label>
                         <div className="bg-white dark:bg-zinc-900 neo-brutalism rounded-3xl flex items-center px-4 py-1">
                             <span className="material-icons-outlined text-gray-400 mr-3">mail</span>
                             <input
@@ -135,7 +135,7 @@ const Signup: React.FC = () => {
                     </div>
 
                     <div>
-                        <label className="block mb-2 ml-1 text-xs font-bold text-black dark:text-white uppercase tracking-wider">Senha</label>
+                        <label className="block mb-2 ml-1 text-xs font-bold text-black dark:text-white tracking-wider">Senha</label>
                         <div className="bg-white dark:bg-zinc-900 neo-brutalism rounded-3xl flex items-center px-4 py-1">
                             <span className="material-icons-outlined text-gray-400 mr-3">lock</span>
                             <input

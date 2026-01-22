@@ -76,7 +76,7 @@ const Login: React.FC = () => {
 
         <form onSubmit={handleLogin} className="space-y-6">
           <div>
-            <label className="block mb-2 ml-1 text-xs font-bold text-black dark:text-white uppercase tracking-wider">E-mail</label>
+            <label className="block mb-2 ml-1 text-xs font-bold text-black dark:text-white tracking-wider">E-mail</label>
             <div className="bg-white dark:bg-zinc-900 neo-brutalism rounded-3xl flex items-center px-4 py-1">
               <span className="material-icons-outlined text-gray-400 mr-3">mail</span>
               <input
@@ -91,7 +91,7 @@ const Login: React.FC = () => {
           </div>
 
           <div>
-            <label className="block mb-2 ml-1 text-xs font-bold text-black dark:text-white uppercase tracking-wider">Senha</label>
+            <label className="block mb-2 ml-1 text-xs font-bold text-black dark:text-white tracking-wider">Senha</label>
             <div className="bg-white dark:bg-zinc-900 neo-brutalism rounded-3xl flex items-center px-4 py-1">
               <span className="material-icons-outlined text-gray-400 mr-3">lock</span>
               <input
@@ -157,7 +157,7 @@ const Login: React.FC = () => {
 
             <form onSubmit={handleRecovery} className="space-y-4">
               <div>
-                <label className="block mb-2 ml-1 text-xs font-bold text-black dark:text-white uppercase tracking-wider">E-mail</label>
+                <label className="block mb-2 ml-1 text-xs font-bold text-black dark:text-white tracking-wider">E-mail</label>
                 <div className="bg-gray-50 dark:bg-zinc-900 border-2 border-black dark:border-white rounded-xl flex items-center px-4 py-1">
                   <span className="material-icons-outlined text-gray-400 mr-3">mail</span>
                   <input

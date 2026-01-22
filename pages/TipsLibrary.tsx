@@ -39,7 +39,7 @@ const TipsLibrary: React.FC = () => {
                         <span className="material-icons-outlined text-black">arrow_back</span>
                     </Link>
                     <div>
-                        <h1 className="text-3xl font-black uppercase tracking-tight leading-none text-black dark:text-white">
+                        <h1 className="text-3xl font-black tracking-tight leading-none text-black dark:text-white">
                             Sabedoria Diária
                         </h1>
                         <p className="text-slate-500 dark:text-slate-400 text-sm font-bold">

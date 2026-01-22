@@ -188,7 +188,7 @@ const NewAgreement: React.FC = () => {
 
         {/* Seleção de Categoria */}
         <div className="bg-white dark:bg-zinc-900 border-3 border-black rounded-[32px] p-6 neo-shadow">
-          <h3 className="text-xs font-black uppercase tracking-widest text-primary mb-4">Escolha a Categoria</h3>
+          <h3 className="text-xs font-black tracking-widest text-primary mb-4">Escolha a Categoria</h3>
           <div className="flex flex-wrap gap-2">
             {(['Casais', 'Amigos', 'Casa', 'Financeiro', 'Família', 'Outros'] as AgreementCategory[]).map((cat) => (
               <button
@@ -206,7 +206,7 @@ const NewAgreement: React.FC = () => {
 
         {/* Seleção de Tom */}
         <div className="bg-white dark:bg-zinc-900 border-3 border-black rounded-[32px] p-6 neo-shadow">
-          <h3 className="text-xs font-black uppercase tracking-widest text-primary mb-4">Escolha o Tom do Acordo</h3>
+          <h3 className="text-xs font-black tracking-widest text-primary mb-4">Escolha o Tom do Acordo</h3>
           <div className="flex gap-2">
             {(['Divertido', 'Ácido', 'Neutro'] as AgreementTone[]).map((t) => (
               <button
@@ -226,7 +226,7 @@ const NewAgreement: React.FC = () => {
           {/* Cláusula 01 - Participantes */}
           <div className="bg-white dark:bg-zinc-900 border-3 border-black rounded-[40px] p-6 neo-shadow relative">
             <div className="flex items-center justify-between mb-2">
-              <span className="text-[10px] font-black uppercase tracking-widest text-primary">Cláusula 01</span>
+              <span className="text-[10px] font-black tracking-widest text-primary">Cláusula 01</span>
               <span className="material-icons-outlined text-slate-300 text-xl">group</span>
             </div>
             <h3 className="font-display font-black text-2xl mb-6 text-black dark:text-white">Dos Participantes</h3>
@@ -271,7 +271,7 @@ const NewAgreement: React.FC = () => {
           {/* Cláusula 02 - Compromisso */}
           <div className="bg-white dark:bg-zinc-900 border-3 border-black rounded-[40px] p-6 neo-shadow">
             <div className="flex items-center justify-between mb-2">
-              <span className="text-[10px] font-black uppercase tracking-widest text-primary">Cláusula 02</span>
+              <span className="text-[10px] font-black tracking-widest text-primary">Cláusula 02</span>
               <span className="material-icons-outlined text-slate-300 text-xl">edit_note</span>
             </div>
             <h3 className="font-display font-black text-2xl mb-4 text-black dark:text-white">Do Compromisso</h3>
@@ -287,7 +287,7 @@ const NewAgreement: React.FC = () => {
           {/* Cláusula 03 - Regras */}
           <div className="bg-white dark:bg-zinc-900 border-3 border-black rounded-[40px] p-6 neo-shadow">
             <div className="flex items-center justify-between mb-2">
-              <span className="text-[10px] font-black uppercase tracking-widest text-primary">Cláusula 03</span>
+              <span className="text-[10px] font-black tracking-widest text-primary">Cláusula 03</span>
               <span className="material-icons-outlined text-slate-300 text-xl">rule</span>
             </div>
             <div className="flex justify-between items-center mb-4">
@@ -340,7 +340,7 @@ const NewAgreement: React.FC = () => {
           {/* Cláusula 04 - Multa */}
           <div className="bg-white dark:bg-zinc-900 border-3 border-black rounded-[40px] p-6 neo-shadow">
             <div className="flex items-center justify-between mb-2">
-              <span className="text-[10px] font-black uppercase tracking-widest text-primary">Cláusula 04</span>
+              <span className="text-[10px] font-black tracking-widest text-primary">Cláusula 04</span>
               <span className="material-symbols-rounded text-slate-300 text-xl">sentiment_very_dissatisfied</span>
             </div>
             <div className="flex justify-between items-center mb-4">
@@ -349,8 +349,8 @@ const NewAgreement: React.FC = () => {
             </div>
 
             <div className="space-y-4">
-              <input
-                className="w-full bg-slate-50 dark:bg-zinc-800 border-2 border-black rounded-full py-4 px-6 focus:ring-0 font-bold text-sm"
+              <textarea
+                className="w-full bg-slate-50 dark:bg-zinc-800 border-2 border-black rounded-[32px] p-6 focus:ring-0 font-bold text-sm min-h-[100px]"
                 placeholder="Ex: Pagar uma pizza gigante"
                 value={penalty}
                 onChange={(e) => setPenalty(e.target.value)}
@@ -370,7 +370,7 @@ const NewAgreement: React.FC = () => {
           {/* Cláusula 05 - Validade */}
           <div className="bg-white dark:bg-zinc-900 border-3 border-black rounded-[40px] p-6 neo-shadow">
             <div className="flex items-center justify-between mb-2">
-              <span className="text-[10px] font-black uppercase tracking-widest text-primary">Cláusula 05</span>
+              <span className="text-[10px] font-black tracking-widest text-primary">Cláusula 05</span>
               <span className="material-icons-outlined text-slate-300 text-xl">event</span>
             </div>
             <h3 className="font-display font-black text-2xl mb-4 text-black dark:text-white">Da Validade</h3>
@@ -422,7 +422,7 @@ const NewAgreement: React.FC = () => {
 
             <div className="flex items-center gap-2 mb-6">
               <span className="material-icons-outlined text-primary text-2xl">auto_awesome</span>
-              <h2 className="text-2xl font-black tracking-tighter leading-none text-black dark:text-white uppercase">
+              <h2 className="text-2xl font-black tracking-tighter leading-none text-black dark:text-white">
                 {modalType === 'rules' ? 'Regras da IA' : 'Multas da IA'}
               </h2>
             </div>

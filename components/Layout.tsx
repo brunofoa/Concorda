@@ -41,7 +41,7 @@ const Layout: React.FC<LayoutProps> = ({ children, title }) => {
       >
         <div className="p-6 h-full flex flex-col">
           <div className="flex justify-between items-center mb-10">
-            <img src="/logo.png" alt="Concorda" className="h-8" />
+            <img src="/logo.png" alt="Concorda" className="h-20" />
             <button
               onClick={toggleSidebar}
               className="w-10 h-10 rounded-full border-2 border-black flex items-center justify-center hover:bg-gray-100 dark:hover:bg-zinc-800 transition-colors"
@@ -79,7 +79,7 @@ const Layout: React.FC<LayoutProps> = ({ children, title }) => {
                   }`}
               >
                 <span className="material-icons-outlined">{item.icon}</span>
-                <span className="uppercase text-sm tracking-wider">{item.label}</span>
+                <span className="text-sm tracking-wider">{item.label}</span>
               </Link>
             ))}
           </nav>
@@ -87,7 +87,7 @@ const Layout: React.FC<LayoutProps> = ({ children, title }) => {
           <div className="pt-6 border-t-2 border-black/10 dark:border-white/10">
             <Link
               to="/login"
-              className="flex items-center gap-4 p-4 rounded-2xl border-2 border-transparent font-bold hover:bg-red-50 dark:hover:bg-red-900/20 text-red-500 transition-all uppercase text-sm tracking-wider"
+              className="flex items-center gap-4 p-4 rounded-2xl border-2 border-transparent font-bold hover:bg-red-50 dark:hover:bg-red-900/20 text-red-500 transition-all text-sm tracking-wider"
             >
               <span className="material-icons-outlined">logout</span>
               Sair
@@ -104,7 +104,7 @@ const Layout: React.FC<LayoutProps> = ({ children, title }) => {
           >
             <span className="material-icons-outlined text-3xl text-black dark:text-white">menu</span>
           </button>
-          {title && <h1 className="text-xl font-black uppercase tracking-tight text-black dark:text-white">{title}</h1>}
+          {title && <h1 className="text-xl font-black tracking-tight text-black dark:text-white">{title}</h1>}
         </div>
         <div className="flex items-center gap-5">
           <button className="p-2 hover:bg-gray-100 dark:hover:bg-zinc-800 rounded-full transition-colors">
