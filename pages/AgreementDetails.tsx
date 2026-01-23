@@ -5,6 +5,9 @@ import Layout from '../components/Layout';
 import { supabase } from '../services/supabase';
 import { AgreementStatus } from '../types';
 import { Share2, Edit2 } from 'lucide-react';
+import html2canvas from 'html2canvas';
+import ShareableAgreementCard from '../components/ShareableAgreementCard';
+
 
 type ClosureType = 'success' | 'fail' | 'extend' | null;
 
@@ -145,28 +148,51 @@ const AgreementDetails: React.FC = () => {
 
   };
 
+
+  const shareRef = useRef<HTMLDivElement>(null); // Ref for the hidden card
+
   const handleShare = async () => {
-    if (!agreement) return;
+    if (!agreement || !shareRef.current) return;
 
-    const shareText = `Acordo: ${agreement.title}\nCompromisso: ${agreement.description}\nFechado no App Concorda! 🤝`;
+    try {
+      const canvas = await html2canvas(shareRef.current, {
+        scale: 2, // Retain high quality
+        useCORS: true,
+        backgroundColor: '#F8F9FA'
+      });
 
-    if (navigator.share) {
-      try {
-        await navigator.share({
-          title: agreement.title,
-          text: shareText,
-        });
-      } catch (err) {
-        console.error('Error sharing:', err);
-      }
-    } else {
-      try {
-        await navigator.clipboard.writeText(shareText);
-        alert('Texto copiado!');
-      } catch (err) {
-        console.error('Error copying to clipboard:', err);
-        alert('Erro ao copiar texto.');
-      }
+      canvas.toBlob(async (blob) => {
+        if (!blob) {
+          alert('Erro ao gerar imagem.');
+          return;
+        }
+
+        const file = new File([blob], `acordo-${agreement.id}.png`, { type: 'image/png' });
+
+        // Check if Web Share API supports file sharing
+        if (navigator.share && navigator.canShare && navigator.canShare({ files: [file] })) {
+          try {
+            await navigator.share({
+              files: [file],
+              title: 'Olha nosso acordo!',
+              text: 'Confira nosso acordo no App Concorda!'
+            });
+          } catch (err) {
+            console.error('Share failed', err);
+          }
+        } else {
+          // Fallback: Download the image
+          const link = document.createElement('a');
+          link.href = canvas.toDataURL('image/png');
+          link.download = `acordo-${agreement.id}.png`;
+          link.click();
+          alert('Imagem baixada! Compartilhe manualmente.');
+        }
+      }, 'image/png');
+
+    } catch (err) {
+      console.error('Error generating image:', err);
+      alert('Erro ao criar imagem para compartilhamento.');
     }
   };
 
@@ -219,7 +245,7 @@ const AgreementDetails: React.FC = () => {
       <div className="px-6 pb-40 max-w-2xl mx-auto font-display">
 
         {/* Main Document Card - Neo Brutalism Style */}
-        <div className="bg-white dark:bg-zinc-900 rounded-[40px] border-3 border-black p-8 relative neo-shadow space-y-8">
+        <div className="bg-white dark:bg-zinc-900 rounded-[40px] border-3 border-black p-8 relative neo-shadow space-y-4">
 
           {/* 1. Header Section */}
           <div className="flex items-start justify-between">
@@ -230,7 +256,7 @@ const AgreementDetails: React.FC = () => {
               </span>
 
               {/* Título */}
-              <h1 className="text-3xl font-black text-black dark:text-white leading-tight uppercase tracking-tight">
+              <h1 className="text-[18px] font-extrabold text-black dark:text-white leading-tight normal-case tracking-tight">
                 {agreement.title}
               </h1>
             </div>
@@ -247,13 +273,13 @@ const AgreementDetails: React.FC = () => {
 
           <div className="text-center sm:text-left">
             {/* Badges */}
-            <div className="flex flex-wrap gap-2 justify-center sm:justify-start pt-2">
+            <div className="flex flex-wrap gap-2 justify-center sm:justify-start -mt-2">
               {agreement.category && (
-                <span className="px-4 py-1.5 rounded-full border-2 border-black font-black text-[10px] uppercase tracking-widest bg-white text-black">
+                <span className="px-4 py-1.5 rounded-full border-2 border-black font-black text-xs normal-case tracking-wide bg-white text-black">
                   {agreement.category}
                 </span>
               )}
-              <span className={`px-4 py-1.5 rounded-full border-2 border-black font-black text-[10px] uppercase tracking-widest ${agreement.status === 'active' ? 'bg-emerald-300' :
+              <span className={`px-4 py-1.5 rounded-full border-2 border-black font-black text-xs normal-case tracking-wide ${agreement.status === 'active' ? 'bg-emerald-300' :
                 agreement.status === 'completed' ? 'bg-blue-300' :
                   agreement.status === 'failed' ? 'bg-red-300' :
                     agreement.status === 'waiting_signatures' ? 'bg-yellow-300' : 'bg-gray-200'
@@ -276,7 +302,7 @@ const AgreementDetails: React.FC = () => {
             <div className="flex flex-wrap gap-3">
               {participants.map((p: any) => (
                 <div key={p.id} className="bg-slate-50 dark:bg-zinc-800 border-2 border-black rounded-xl px-4 py-2">
-                  <span className="text-sm font-bold text-black dark:text-white uppercase">{p.name}</span>
+                  <span className="text-sm font-bold text-black dark:text-white normal-case">{p.name}</span>
                 </div>
               ))}
             </div>
@@ -289,7 +315,7 @@ const AgreementDetails: React.FC = () => {
               O Compromisso
             </h3>
             <div className="p-4 bg-slate-50 dark:bg-zinc-800 border-2 border-black rounded-2xl">
-              <p className="text-lg font-bold text-gray-800 dark:text-gray-100 leading-relaxed">
+              <p className="text-sm font-bold text-gray-800 dark:text-gray-100 leading-relaxed normal-case">
                 {agreement.description}
               </p>
             </div>
@@ -306,7 +332,6 @@ const AgreementDetails: React.FC = () => {
                 <ul className="space-y-2 pl-2">
                   {agreement.agreement_rules.map((r: any, i: number) => (
                     <li key={i} className="flex items-start gap-3 text-sm font-bold text-gray-700 dark:text-gray-300">
-                      <span className="mt-1.5 w-1.5 h-1.5 rounded-full bg-black shrink-0"></span>
                       <span>{r.text}</span>
                     </li>
                   ))}
@@ -590,8 +615,13 @@ const AgreementDetails: React.FC = () => {
           </div>
         </div>
       )}
+      {/* Hidden Container for Image Generation */}
+      <div style={{ position: 'absolute', left: '-9999px', top: '-9999px' }}>
+        <ShareableAgreementCard ref={shareRef} agreement={agreement} />
+      </div>
     </Layout>
   );
 };
+
 
 export default AgreementDetails;

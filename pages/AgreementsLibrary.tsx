@@ -198,7 +198,7 @@ const templates: AgreementTemplate[] = [
     title: 'Você não é todo mundo',
     commitment: 'Argumento do tipo "mas todo mundo vai!" ou "todo mundo tem!" não cola mais, é preciso explicar por que de verdade.',
     rules: ['Filho(a) apresenta motivos reais: "quero ir porque é importante pra mim por X razão"', 'Mãe ouve os argumentos antes de decidir (sem já chegar negando)', 'Se a resposta for "não", vem acompanhada de explicação honesta, não só "porque eu disse"'],
-    penalty: 'Quem usar "todo mundo" como argumento perde automaticamente o pedido daquela vez. Mãe que responder só com "porque não" tem que explicar direito depois (ou reconsidera).',
+    penalty: 'Quem quebrar o acordo dá à outra parte o direito de escolher a próxima atividade em família (filme, jogo ou lanche).',
     validity: 'Indeterminado',
     color: '#FFD54F',
     icon: 'fingerprint'
@@ -351,7 +351,7 @@ const AgreementsLibrary: React.FC = () => {
 
               <button
                 onClick={() => setSelectedTemplate(template)}
-                className="w-full py-4 rounded-full border-2 border-black font-black text-xs uppercase tracking-widest transition-all bg-white hover:bg-slate-50 neo-shadow !shadow-[4px_4px_0px_0px_rgba(0,0,0,1)]"
+                className="w-full py-4 rounded-full border-2 border-black font-black text-xs uppercase tracking-widest transition-all bg-white hover:bg-slate-50 text-black neo-shadow !shadow-[4px_4px_0px_0px_rgba(0,0,0,1)]"
               >
                 Ver Modelo
               </button>

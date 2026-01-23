@@ -128,7 +128,7 @@ const Profile: React.FC = () => {
         <div className="w-full space-y-6">
           <div className="space-y-2">
             <label className="block text-xs font-black text-gray-500 ml-1">Nome</label>
-            <div className="bg-white dark:bg-zinc-900 border-2 border-black rounded-2xl p-4 flex items-center gap-2">
+            <div className="bg-white dark:bg-zinc-900 border-2 border-black rounded-2xl p-4 flex items-center gap-2 neo-shadow">
               {isEditing ? (
                 <input
                   type="text"
@@ -146,7 +146,7 @@ const Profile: React.FC = () => {
 
           <div className="space-y-2">
             <label className="block text-xs font-black text-gray-500 ml-1">Sobrenome</label>
-            <div className="bg-white dark:bg-zinc-900 border-2 border-black rounded-2xl p-4 flex items-center gap-2">
+            <div className="bg-white dark:bg-zinc-900 border-2 border-black rounded-2xl p-4 flex items-center gap-2 neo-shadow">
               {isEditing ? (
                 <input
                   type="text"
@@ -164,7 +164,7 @@ const Profile: React.FC = () => {
 
           <div className="space-y-2">
             <label className="block text-xs font-black text-gray-500 ml-1">E-mail</label>
-            <div className="bg-white dark:bg-zinc-900 border-2 border-black rounded-2xl p-4 flex items-center gap-2 opacity-70">
+            <div className="bg-white dark:bg-zinc-900 border-2 border-black rounded-2xl p-4 flex items-center gap-2 opacity-70 neo-shadow">
               <span className="material-icons-outlined text-gray-400 text-sm">mail</span>
               <span className="font-bold text-black dark:text-white">{profile?.email || '...'}</span>
             </div>
@@ -172,7 +172,7 @@ const Profile: React.FC = () => {
 
           <div className="space-y-2">
             <label className="block text-xs font-black text-gray-500 ml-1">Telefone</label>
-            <div className="bg-white dark:bg-zinc-900 border-2 border-black rounded-2xl p-4 flex items-center gap-2">
+            <div className="bg-white dark:bg-zinc-900 border-2 border-black rounded-2xl p-4 flex items-center gap-2 neo-shadow">
               <span className="material-icons-outlined text-gray-400 text-sm">phone</span>
               {isEditing ? (
                 <input

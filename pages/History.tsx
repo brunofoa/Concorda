@@ -116,7 +116,7 @@ const History: React.FC = () => {
                 <div className="flex flex-col h-full">
                   <div className="mb-4">
                     {agreement.category && (
-                      <span className="inline-block mb-2 px-2 py-0.5 rounded-full border border-black bg-slate-100 text-[8px] font-black uppercase tracking-widest">
+                      <span className="inline-block mb-2 px-2 py-0.5 rounded-full border border-black bg-slate-100 text-black text-[8px] font-black uppercase tracking-widest">
                         {agreement.category}
                       </span>
                     )}
