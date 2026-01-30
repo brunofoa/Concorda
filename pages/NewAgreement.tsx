@@ -396,11 +396,11 @@ const NewAgreement: React.FC = () => {
               className="w-full h-16 bg-primary rounded-full border-3 border-black neo-shadow active:translate-x-[2px] active:translate-y-[2px] active:shadow-none transition-all flex items-center justify-center gap-3 group disabled:opacity-50 disabled:cursor-not-allowed"
             >
               {loading ? (
-                <span className="font-display font-black text-xl uppercase tracking-tighter">CRIANDO...</span>
+                <span className="font-display font-black text-xl tracking-tighter">Criando...</span>
               ) : (
                 <>
                   <span className="material-icons-outlined font-black text-2xl">check</span>
-                  <span className="font-display font-black text-xl uppercase tracking-tighter">CRIAR ACORDO</span>
+                  <span className="font-display font-black text-xl tracking-tighter">Criar Acordo</span>
                 </>
               )}
             </button>

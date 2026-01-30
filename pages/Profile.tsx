@@ -207,6 +207,33 @@ const Profile: React.FC = () => {
               <span className="material-icons-outlined">contrast</span>
               Alternar Tema
             </button>
+
+            {/* Legal Section */}
+            <div className="pt-8 pb-4 space-y-4 border-t border-gray-200 dark:border-zinc-700 mt-8">
+              <div className="flex items-center justify-center gap-4">
+                <a
+                  href="https://concorda.notion.site/termos-de-uso"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-sm text-gray-500 dark:text-gray-400 underline decoration-gray-400 hover:text-gray-700 dark:hover:text-gray-300 transition-colors"
+                >
+                  Termos de Uso
+                </a>
+                <span className="text-gray-300 dark:text-gray-600">•</span>
+                <a
+                  href="https://concorda.notion.site/politica-de-privacidade"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-sm text-gray-500 dark:text-gray-400 underline decoration-gray-400 hover:text-gray-700 dark:hover:text-gray-300 transition-colors"
+                >
+                  Política de Privacidade
+                </a>
+              </div>
+
+              <p className="text-xs text-gray-400 dark:text-gray-500 text-center leading-relaxed max-w-sm mx-auto">
+                O Concorda é uma ferramenta de mediação. Não substituímos aconselhamento jurídico profissional.
+              </p>
+            </div>
           </div>
         </div>
       </div>

@@ -246,16 +246,19 @@ const Dashboard: React.FC = () => {
             )}
           </div>
         </section>
-
-        <section className="pt-4 pb-8">
-          <Link to="/new">
-            <button className="w-full py-5 rounded-full bg-primary border-3 border-black text-black font-black text-xl neo-shadow active:translate-y-1 active:shadow-none transition-all flex items-center justify-center gap-3 group">
-              <span className="material-icons-outlined font-black text-2xl group-hover:rotate-90 transition-transform duration-300 text-black">add_circle</span>
-              <span className="text-black">Novo Acordo</span>
-            </button>
-          </Link>
-        </section>
       </div>
+
+      {/* Floating Action Button (FAB) - Novo Acordo */}
+      <Link to="/new">
+        <button
+          className="fixed bottom-6 right-6 w-16 h-16 rounded-full bg-primary border-3 border-black neo-shadow flex items-center justify-center group hover:scale-110 active:scale-95 active:translate-y-1 active:shadow-none transition-all duration-200 z-50"
+          aria-label="Novo Acordo"
+        >
+          <span className="material-icons-outlined font-black text-3xl text-black group-hover:rotate-90 transition-transform duration-300">
+            add
+          </span>
+        </button>
+      </Link>
 
       {/* Article Modal */}
       {isModalOpen && (

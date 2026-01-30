@@ -6,95 +6,281 @@ interface ShareableAgreementCardProps {
 }
 
 const ShareableAgreementCard = forwardRef<HTMLDivElement, ShareableAgreementCardProps>(({ agreement }, ref) => {
+    const participants = agreement.agreement_participants || [];
+    const rules = agreement.agreement_rules || [];
+
     return (
         <div
             ref={ref}
             style={{
                 width: '1080px',
-                height: '1920px', // Instagram Story size
-                backgroundColor: '#F8F9FA', // Light bg
+                height: '1920px',
+                background: 'linear-gradient(135deg, #92FFAD 0%, #5CDFF0 100%)',
                 position: 'relative',
                 display: 'flex',
-                flexDirection: 'column',
-                padding: '80px',
+                alignItems: 'center',
+                justifyContent: 'center',
+                padding: '60px',
                 boxSizing: 'border-box',
-                fontFamily: "'Inter', sans-serif" // Ensure font matches
+                fontFamily: "'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif"
             }}
-            className="bg-slate-50"
         >
-            {/* Decorative Border */}
-            <div className="absolute inset-10 border-[12px] border-black rounded-[60px] pointer-events-none"></div>
-
-            {/* Header */}
-            <div className="flex justify-between items-center mb-16 relative z-10 w-full px-4">
-                <span className="text-3xl font-bold text-gray-500">
-                    {new Date(agreement.created_at).toLocaleDateString()}
-                </span>
-                <span className="text-4xl font-black bg-black text-white px-8 py-3 rounded-full">
-                    {agreement.category || 'ACORDO'}
-                </span>
-            </div>
-
-            {/* Main Content */}
-            <div className="flex-1 flex flex-col relative z-10 px-4">
-                <h1 className="text-[90px] leading-[0.9] font-black text-black mb-8 break-words tracking-tight">
-                    {agreement.title}
-                </h1>
-
-                {/* Participants */}
-                <div className="flex gap-4 flex-wrap mb-12">
-                    {agreement.agreement_participants?.map((p: any) => (
-                        <div key={p.id} className="bg-black text-white text-2xl font-bold px-6 py-3 rounded-full">
-                            {p.name.split(' ')[0]}
-                        </div>
-                    ))}
+            {/* Central White Card - Neo Brutalist */}
+            <div
+                style={{
+                    backgroundColor: '#FFFFFF',
+                    border: '4px solid #000000',
+                    boxShadow: '8px 8px 0px 0px rgba(0,0,0,1)',
+                    borderRadius: '48px',
+                    padding: '64px',
+                    width: '100%',
+                    maxWidth: '900px',
+                    display: 'flex',
+                    flexDirection: 'column',
+                    gap: '40px',
+                    position: 'relative',
+                    boxSizing: 'border-box'
+                }}
+            >
+                {/* Header: Title */}
+                <div style={{ textAlign: 'center' }}>
+                    <h1
+                        style={{
+                            fontSize: '72px',
+                            fontWeight: '900',
+                            color: '#000000',
+                            lineHeight: '1.1',
+                            margin: '0',
+                            wordBreak: 'break-word',
+                            letterSpacing: '-0.02em'
+                        }}
+                    >
+                        {agreement.title}
+                    </h1>
                 </div>
 
-                {/* Sections Container */}
-                <div className="space-y-10">
-                    {/* Compromisso */}
-                    <div className="bg-white border-[6px] border-black rounded-[40px] p-10 shadow-[15px_15px_0px_0px_rgba(0,0,0,1)]">
-                        <h3 className="text-2xl font-black text-gray-400 mb-4">O Compromisso</h3>
-                        <p className="text-4xl font-bold text-gray-900 leading-tight">
-                            "{agreement.description}"
+                {/* Participants with Handshake */}
+                {participants.length > 0 && (
+                    <div
+                        style={{
+                            display: 'flex',
+                            alignItems: 'center',
+                            justifyContent: 'center',
+                            gap: '24px',
+                            flexWrap: 'wrap'
+                        }}
+                    >
+                        {participants.map((p: any, index: number) => (
+                            <React.Fragment key={p.id || index}>
+                                <div
+                                    style={{
+                                        backgroundColor: '#FFFFFF',
+                                        border: '3px solid #000000',
+                                        borderRadius: '9999px',
+                                        padding: '16px 32px',
+                                        fontSize: '28px',
+                                        fontWeight: '700',
+                                        color: '#000000'
+                                    }}
+                                >
+                                    {p.name}
+                                </div>
+                                {index === 0 && participants.length > 1 && (
+                                    <div style={{ fontSize: '48px' }}>🤝</div>
+                                )}
+                            </React.Fragment>
+                        ))}
+                    </div>
+                )}
+
+                {/* O Compromisso */}
+                <div style={{ textAlign: 'center' }}>
+                    <h3
+                        style={{
+                            fontSize: '20px',
+                            fontWeight: '900',
+                            color: '#92FFAD',
+                            textTransform: 'uppercase',
+                            letterSpacing: '0.1em',
+                            margin: '0 0 16px 0'
+                        }}
+                    >
+                        O Compromisso
+                    </h3>
+                    <p
+                        style={{
+                            fontSize: '36px',
+                            fontWeight: '600',
+                            color: '#1F2937',
+                            lineHeight: '1.4',
+                            margin: '0',
+                            fontStyle: 'italic',
+                            wordBreak: 'break-word'
+                        }}
+                    >
+                        "{agreement.description}"
+                    </p>
+                </div>
+
+                {/* Regras */}
+                {rules.length > 0 && (
+                    <div>
+                        <h3
+                            style={{
+                                fontSize: '20px',
+                                fontWeight: '900',
+                                color: '#92FFAD',
+                                textTransform: 'uppercase',
+                                letterSpacing: '0.1em',
+                                margin: '0 0 20px 0',
+                                textAlign: 'center'
+                            }}
+                        >
+                            Regras Estipuladas
+                        </h3>
+                        <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
+                            {rules.map((rule: any, index: number) => (
+                                <div
+                                    key={index}
+                                    style={{
+                                        display: 'flex',
+                                        alignItems: 'flex-start',
+                                        gap: '16px'
+                                    }}
+                                >
+                                    <span
+                                        style={{
+                                            fontSize: '28px',
+                                            fontWeight: '900',
+                                            color: '#92FFAD',
+                                            minWidth: '40px'
+                                        }}
+                                    >
+                                        {index + 1}.
+                                    </span>
+                                    <span
+                                        style={{
+                                            fontSize: '28px',
+                                            fontWeight: '600',
+                                            color: '#374151',
+                                            lineHeight: '1.4',
+                                            wordBreak: 'break-word',
+                                            flex: 1
+                                        }}
+                                    >
+                                        {rule.text || rule}
+                                    </span>
+                                </div>
+                            ))}
+                        </div>
+                    </div>
+                )}
+
+                {/* A Multa */}
+                {agreement.penalty && (
+                    <div
+                        style={{
+                            backgroundColor: '#FEE2E2',
+                            border: '3px solid #000000',
+                            borderRadius: '24px',
+                            padding: '24px',
+                            textAlign: 'center'
+                        }}
+                    >
+                        <h3
+                            style={{
+                                fontSize: '20px',
+                                fontWeight: '900',
+                                color: '#DC2626',
+                                textTransform: 'uppercase',
+                                letterSpacing: '0.1em',
+                                margin: '0 0 12px 0',
+                                display: 'flex',
+                                alignItems: 'center',
+                                justifyContent: 'center',
+                                gap: '8px'
+                            }}
+                        >
+                            <span style={{ fontSize: '24px' }}>⚠️</span>
+                            A Multa
+                        </h3>
+                        <p
+                            style={{
+                                fontSize: '32px',
+                                fontWeight: '700',
+                                color: '#DC2626',
+                                margin: '0',
+                                lineHeight: '1.3',
+                                wordBreak: 'break-word'
+                            }}
+                        >
+                            {agreement.penalty}
                         </p>
                     </div>
+                )}
 
-                    {/* Regras */}
-                    {agreement.rules && agreement.rules.length > 0 && (
-                        <div className="bg-white border-[6px] border-black rounded-[40px] p-10 shadow-[15px_15px_0px_0px_rgba(0,0,0,1)]">
-                            <h3 className="text-2xl font-black text-gray-400 mb-4">Regras</h3>
-                            <ul className="list-disc list-inside space-y-2">
-                                {agreement.rules.map((rule, index) => (
-                                    <li key={index} className="text-3xl font-bold text-gray-900 leading-tight">
-                                        {rule}
-                                    </li>
-                                ))}
-                            </ul>
-                        </div>
-                    )}
-
-                    {/* Multa */}
-                    {agreement.penalty && (
-                        <div className="bg-white border-[6px] border-black rounded-[40px] p-10 shadow-[15px_15px_0px_0px_rgba(0,0,0,1)]">
-                            <h3 className="text-2xl font-black text-gray-400 mb-4">A Multa</h3>
-                            <p className="text-3xl font-bold text-red-600 leading-tight">
-                                {agreement.penalty}
-                            </p>
-                        </div>
-                    )}
+                {/* Footer */}
+                <div
+                    style={{
+                        marginTop: 'auto',
+                        paddingTop: '32px',
+                        borderTop: '2px solid #E5E7EB',
+                        display: 'flex',
+                        flexDirection: 'column',
+                        alignItems: 'center',
+                        gap: '16px'
+                    }}
+                >
+                    <img
+                        src="/logo.png"
+                        alt="Concorda"
+                        style={{
+                            height: '60px',
+                            width: 'auto',
+                            objectFit: 'contain'
+                        }}
+                    />
+                    <p
+                        style={{
+                            fontSize: '24px',
+                            fontWeight: '700',
+                            color: '#6B7280',
+                            margin: '0',
+                            letterSpacing: '0.05em'
+                        }}
+                    >
+                        Selado no app Concorda
+                    </p>
                 </div>
             </div>
 
-            {/* Footer */}
-            <div className="mt-auto relative z-10 flex flex-col items-center justify-center pt-16 pb-4">
-                <img src="/logo.png" alt="Concorda" className="h-24 w-auto mb-4 object-contain" />
-                <p className="text-3xl text-gray-600 font-bold tracking-wider">concorda.app.br</p>
-            </div>
-
-            {/* Background decoration */}
-            <div className="absolute top-1/2 right-[-100px] w-[600px] h-[600px] bg-emerald-300 rounded-full blur-[150px] opacity-20 pointer-events-none"></div>
-            <div className="absolute bottom-[-100px] left-[-100px] w-[500px] h-[500px] bg-purple-300 rounded-full blur-[150px] opacity-20 pointer-events-none"></div>
+            {/* Decorative Elements */}
+            <div
+                style={{
+                    position: 'absolute',
+                    top: '10%',
+                    right: '-5%',
+                    width: '400px',
+                    height: '400px',
+                    background: 'rgba(255, 255, 255, 0.2)',
+                    borderRadius: '50%',
+                    filter: 'blur(80px)',
+                    pointerEvents: 'none'
+                }}
+            />
+            <div
+                style={{
+                    position: 'absolute',
+                    bottom: '10%',
+                    left: '-5%',
+                    width: '350px',
+                    height: '350px',
+                    background: 'rgba(255, 255, 255, 0.15)',
+                    borderRadius: '50%',
+                    filter: 'blur(80px)',
+                    pointerEvents: 'none'
+                }}
+            />
         </div>
     );
 });
