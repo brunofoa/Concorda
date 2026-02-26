@@ -42,6 +42,7 @@ export interface Agreement {
   status: AgreementStatus;
   participants?: Participant[];
   agreement_participants?: any[]; // Joined data from Supabase
+  agreement_rules?: any[]; // Joined rules data from Supabase
   rules?: string[];
   signatures?: any;
   initial_signature_creator?: string;
